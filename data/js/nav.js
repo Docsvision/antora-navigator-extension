@@ -320,12 +320,8 @@
         .appendChild(createElement('li.nav-version-option', { dataset: versionDataset }, componentData.unversioned ? "..." : versionData.displayVersion))
         .addEventListener('click', selectVersion.bind(navVersionMenu, navItem, componentData, page))
       var downloadPdfLink = createElement('a.nav-version-pdf-download-link.with-tooltip')
-      var pdfUrlTitle = componentData.title && componentData.title.toLowerCase().replaceAll(" ", "-")
-      if (versionData.version) {
-        downloadPdfLink.href = relativize(`/pdfs/${componentData.name}/${versionData.version}/${pdfUrlTitle}.pdf`)
-      } else {
-        downloadPdfLink.href = relativize(`/pdfs/${componentData.name}/${pdfUrlTitle}.pdf`)
-      }
+      var pdfUrlTitle = componentData.name + versionData.version ? `-${versionData.version}` : ''
+      downloadPdfLink.href = relativize(`/pdfs/_exports/${pdfUrlTitle}.pdf`)
       downloadPdfLink.setAttribute("download", componentData.title)
       downloadPdfLink.innerText = "PDF"
       downloadPdfLink.setAttribute("data-action", _.download)
