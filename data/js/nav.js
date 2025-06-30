@@ -321,7 +321,11 @@
         .addEventListener('click', selectVersion.bind(navVersionMenu, navItem, componentData, page))
       var downloadPdfLink = createElement('a.nav-version-pdf-download-link.with-tooltip')
       var pdfUrlTitle = componentData.name + (versionData.version ? `-${versionData.version}` : '')
-      downloadPdfLink.href = relativize(`/_exports/${pdfUrlTitle}.pdf`)
+      if (versionData.version) {
+        downloadPdfLink.href = relativize(`/${componentData.name}/${versionData.version}/_exports/${pdfUrlTitle}.pdf`)
+      } else {
+        downloadPdfLink.href = relativize(`/${componentData.name}/_exports/${pdfUrlTitle}.pdf`)
+      }
       downloadPdfLink.setAttribute("download", componentData.title)
       downloadPdfLink.innerText = "PDF"
       downloadPdfLink.setAttribute("data-action", _.download)
