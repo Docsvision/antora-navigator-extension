@@ -326,7 +326,7 @@
       } else {
         downloadPdfLink.href = relativize(`/${componentData.name}/_exports/${pdfUrlTitle}.pdf`)
       }
-      downloadPdfLink.setAttribute("download", pdfUrlTitle)
+      downloadPdfLink.setAttribute("download", `${pdfUrlTitle}.pdf`)
       downloadPdfLink.innerText = "PDF"
       downloadPdfLink.setAttribute("data-action", _.download)
       navVersionMenu.lastChild.appendChild(downloadPdfLink)
